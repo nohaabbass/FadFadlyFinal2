@@ -39,7 +39,7 @@ public class AdapterPatients extends RecyclerView.Adapter<AdapterPatients.MyHold
     @Override
     public void onBindViewHolder(@NonNull MyHolder myholder, int position) {
         ModelPatient modelPatient = modelPatientList.get(position);
-        final String hisUid = modelPatient.getPaientID();
+        final String hisUid = modelPatient.getUid();
         String patientImage = modelPatient.getImage();
         String patientName = modelPatient.getName();
         String patientEmail = modelPatient.getEmail();

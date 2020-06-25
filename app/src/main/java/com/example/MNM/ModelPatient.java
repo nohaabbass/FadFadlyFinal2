@@ -18,7 +18,7 @@ public class ModelPatient {
         this.uid = uid;
     }
 
-    public String getPaientID() {
+    public String getUid() {
         return uid;
     }
 

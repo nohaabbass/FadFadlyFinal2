@@ -48,9 +48,10 @@ public class patientsFragment extends Fragment {
          recyclerView.setHasFixedSize(true);
          recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         modelPatientList =new ArrayList<>();
-          readUsers();
-        /* adapterPatients = new AdapterPatients(view.getContext(),modelPatientList);
-         recyclerView.setAdapter(adapterPatients);
+         // readUsers();
+       // adapterPatients = new AdapterPatients(view.getContext(),modelPatientList);
+         //recyclerView.setAdapter(adapterPatients);
+         final FirebaseUser fuser = firebaseAuth.getInstance().getCurrentUser();
          databaseReference = FirebaseDatabase.getInstance().getReference("user");
          databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -61,6 +62,9 @@ public class patientsFragment extends Fragment {
                     String id = ""+ds.child("uid").getValue();
                     Log.i("test",id+"ss");
                     modelPatientList.add(modelUser);
+                    adapterPatients = new AdapterPatients(getContext(),modelPatientList);
+
+                    recyclerView.setAdapter(adapterPatients);
                     //currentID = id;
                 }
             }
@@ -69,7 +73,7 @@ public class patientsFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
          return view;
     }
 
@@ -84,7 +88,7 @@ public class patientsFragment extends Fragment {
                     ModelPatient modelUser = ds.getValue(ModelPatient.class);
                       assert modelUser!=null;
                       assert fuser!=null;
-                    if(!modelUser.getPaientID().equals(fuser.getUid())){
+                    if(!modelUser.getUid().equals(fuser.getUid())){
                         modelPatientList.add(modelUser);
                     }
 
